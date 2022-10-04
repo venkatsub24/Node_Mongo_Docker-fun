@@ -13,6 +13,7 @@ import { config } from "./config/config";
 import Logging from "./library/Logging";
 
 import authorRoutes from "./routes/Author";
+import bookRoutes from "./routes/Book";
 
 const port: number = config.server.port;
 const app: Application = express();
@@ -73,6 +74,7 @@ const startServer = () => {
   });
 
   app.use("/authors", authorRoutes);
+  app.use("/books", bookRoutes);
 
   // Middleware for error handling
   app.use((req: Request, res: Response, next: NextFunction) => {
