@@ -2,7 +2,7 @@
   "name": "node_mongo_docker_fun",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/app.ts",
@@ -30,6 +30,8 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
-    "http-errors": "^2.0.0"
+    "http": "^0.0.1-security",
+    "http-errors": "^2.0.0",
+    "mongoose": "^6.6.4"
   }
 }
