@@ -23,6 +23,7 @@ const getBook = (req: Request, res: Response, next: NextFunction) => {
 
   return Book.findById(bookId)
     .populate("author")
+    .select("-__v")
     .then((book) =>
       book
         ? res.status(200).json({ book })
@@ -34,6 +35,7 @@ const getBook = (req: Request, res: Response, next: NextFunction) => {
 const getAllBook = (req: Request, res: Response, next: NextFunction) => {
   return Book.find()
     .populate("author")
+    .select("-__v")
     .then((books) =>
       books
         ? res.status(200).json({ books })
