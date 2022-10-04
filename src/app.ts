@@ -12,6 +12,8 @@ import createHttpError from "http-errors";
 import { config } from "./config/config";
 import Logging from "./library/Logging";
 
+import authorRoutes from "./routes/Author";
+
 const port: number = config.server.port;
 const app: Application = express();
 
@@ -31,12 +33,12 @@ mongoose
 const startServer = () => {
   app.use((req: Request, res: Response, next: NextFunction) => {
     /** Log the request */
-    Logging.info(`Incoming -> Method: [${req.method}] - Url: [${req.url}]`);
+    Logging.info(`Incoming -> Method:[${req.method}]-Url:[${req.url}]`);
 
     res.on("finish", () => {
       /** Log the response */
       Logging.info(
-        `Incoming -> Method: [${req.method}] - Url: [${req.url}] - Status: [${res.statusCode}]`
+        `Incoming -> Method:[${req.method}] -Url:[${req.url}]-Status:[${res.statusCode}]`
       );
     });
 
@@ -69,6 +71,8 @@ const startServer = () => {
   app.get("/", (req: Request, res: Response) => {
     res.status(200).json({ message: "Hello!" });
   });
+
+  app.use("/authors", authorRoutes);
 
   // Middleware for error handling
   app.use((req: Request, res: Response, next: NextFunction) => {
